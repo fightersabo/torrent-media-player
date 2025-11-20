@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torrent Media Player</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Torrent Media Player</h1>
+    <p>Download and stream MP4/MKV torrents with optional subtitles.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Add Torrent</h2>
+      <form id="magnet-form">
+        <label for="magnetUri">Magnet link</label>
+        <input id="magnetUri" name="magnetUri" type="text" placeholder="Paste magnet URI" required />
+        <button type="submit">Add Magnet</button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <form id="file-form" enctype="multipart/form-data">
+        <label for="torrentFile">Torrent file</label>
+        <input id="torrentFile" name="torrent" type="file" accept=".torrent" />
+        <button type="submit">Upload Torrent</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Active Torrents</h2>
+      <div id="torrent-list" class="list"></div>
+    </section>
+
+    <section class="card">
+      <h2>Player</h2>
+      <div class="player">
+        <video id="video" controls crossorigin="anonymous"></video>
+        <div class="controls">
+          <label for="subtitleInput">Attach subtitles (.vtt)</label>
+          <input id="subtitleInput" type="file" accept=".vtt,.srt" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
