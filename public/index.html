@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torrent Media Player</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="hero">
+    <div>
+      <p class="pill">Fast Node.js backend · Modern UI</p>
+      <h1>Stream and save torrents, instantly.</h1>
+      <p class="lede">Drop in a magnet link or .torrent file and start streaming MP4/MKV with subtitle support while downloads continue in the background.</p>
+      <div class="actions hero-actions">
+        <button class="primary" id="scrollToForm">Add a torrent</button>
+        <a class="ghost" href="https://nodejs.org/en" target="_blank" rel="noreferrer">Powered by Node 20+</a>
+      </div>
+    </div>
+    <div class="glass">
+      <div class="stat">
+        <span class="label">Active torrents</span>
+        <span id="stat-count" class="value">0</span>
+      </div>
+      <div class="stat">
+        <span class="label">Download speed</span>
+        <span id="stat-speed" class="value">0 B/s</span>
+      </div>
+      <div class="stat">
+        <span class="label">Peers connected</span>
+        <span id="stat-peers" class="value">0</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="card" id="formCard">
+      <div class="card-header">
+        <div>
+          <p class="pill">Step 1</p>
+          <h2>Add a torrent</h2>
+          <p class="muted">Use a magnet URI for fastest start or upload a .torrent file.</p>
+        </div>
+      </div>
+      <div class="form-grid">
+        <form id="magnet-form" class="panel">
+          <label for="magnetUri">Magnet link</label>
+          <div class="input-row">
+            <input id="magnetUri" name="magnetUri" type="text" placeholder="Paste magnet URI" required />
+            <button type="submit" class="primary">Add</button>
+          </div>
+        </form>
+
+        <form id="file-form" enctype="multipart/form-data" class="panel">
+          <label for="torrentFile">Torrent file</label>
+          <div class="input-row">
+            <input id="torrentFile" name="torrent" type="file" accept=".torrent" />
+            <button type="submit" class="primary">Upload</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <p class="pill">Step 2</p>
+          <h2>Manage torrents</h2>
+          <p class="muted">Monitor progress, stream immediately, or download completed files.</p>
+        </div>
+        <button id="refresh" class="ghost">Refresh</button>
+      </div>
+      <div id="torrent-list" class="list"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <p class="pill">Step 3</p>
+          <h2>Player</h2>
+          <p class="muted">Stream MP4/MKV with optional VTT or SRT subtitles.</p>
+        </div>
+      </div>
+      <div class="player">
+        <video id="video" controls crossorigin="anonymous"></video>
+        <div class="controls">
+          <label for="subtitleInput">Attach subtitles</label>
+          <input id="subtitleInput" type="file" accept=".vtt,.srt" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
